@@ -1,7 +1,7 @@
 
 import { Container, Grid } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import ServiceCard from '../Shared/ServiceCard/ServiceCard';
 import PageSlider from '../Shared/PageSlider/PageSlider'
@@ -10,6 +10,7 @@ import { languagesData, servicesData, paymentData } from '../../fakeData/fakeDat
 import CustomButton from '../Shared/CustomButton/CustomButton';
 import PaymentButton from '../Shared/PaymentButton/PaymentButton';
 import PriceCard from '../Shared/PriceCard/PriceCard';
+import { addToDb, getStoredCart, removeFromDb, clearTheCart } from '../../utilities/fakeDB'
 
 const Home = () => {
     const numberOfPage = 3;
@@ -21,7 +22,12 @@ const Home = () => {
     const [languageClicked, setLanguageClicked] = useState('');
     const [specificPackage, setSpecificPackage] = useState({});
     const [UX, setUX] = useState('');
+    const [cart, setCart] = useState({});
+    const [change, setChange] = useState(false);
     const [paymentTitle, setPaymentTitle] = useState('');
+    const pricingObject = getStoredCart();
+
+
 
     //----------these are for pages slider----------//
     const [pageNumber, setPageNmber] = useState(defaultPageNumber);
@@ -31,6 +37,8 @@ const Home = () => {
         const shalow = { ...specificPackage };
         shalow.pages = priceOfPerPage * value;
         setSpecificPackage(shalow);
+        addToDb('pages', priceOfPerPage * value);
+        setChange(!change);
     };
 
     //----------Handler for slide navigation----------//
@@ -53,13 +61,17 @@ const Home = () => {
             shalow.language = price;
             setSpecificPackage(shalow);
             setLanguageClicked(givenTitle);
+            addToDb('language', price);
+            setChange(!change);
         }
         if (type === 'service') {
             const { price } = servicesData.find(each => each.title === givenTitle);
             const shalow = { ...specificPackage };
             shalow.service = price;
             setSpecificPackage(shalow);
-            setServiceClicked(givenTitle)
+            setServiceClicked(givenTitle);
+            addToDb('service', price);
+            setChange(!change);
         }
         if (type === 'payment') {
             const { price } = paymentData.find(each => each.title === givenTitle);
@@ -67,6 +79,8 @@ const Home = () => {
             shalow.payment = price;
             setSpecificPackage(shalow);
             setPaymentTitle(givenTitle);
+            addToDb('payment', price);
+            setChange(!change);
         }
 
     }
@@ -77,15 +91,23 @@ const Home = () => {
             const shalow = { ...specificPackage };
             shalow.ux = priceOfUx;
             setSpecificPackage(shalow);
+            addToDb('ux', priceOfUx);
+            setChange(!change);
         } else {
             const shalow = { ...specificPackage };
             delete shalow.ux;
             setSpecificPackage(shalow);
+            removeFromDb('ux');
+            setChange(!change);
         }
     }
+    useEffect(() => {
+        setCart(pricingObject);
+    }, [change, pricingObject])
 
     //----------calculating the total cost----------//
-    let totalCost = Object.values(specificPackage).reduce((acc, cur) => acc + cur, 0);
+
+    let totalCost = Object.values(cart).reduce((acc, cur) => acc + cur, 0);
     return (
         <section className="home-section">
             <h1 className="top-heading">CALCULATE YOUR PRICE</h1>
@@ -178,7 +200,7 @@ const Home = () => {
                             {
                                 slideNumber === 3 ? <>
                                     <PriceCard totalCost={totalCost} />
-                                    <button className="start-button">START YOUR PROJECT NOW</button>
+                                    <button className="start-button" onClick={clearTheCart}>START YOUR PROJECT NOW</button>
                                 </> : <span>PLEASE INPUT ALL THE FIELDS TO SHOW ESTIMATED PRICE</span>
                             }
                         </Grid>

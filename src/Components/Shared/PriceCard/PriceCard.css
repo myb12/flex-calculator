@@ -4,6 +4,7 @@
     height: 200px;
     padding: 25px;
     text-align: center;
+    position: relative;
 }
 
 .price-card .main-heading{
@@ -13,4 +14,10 @@
 
 .price-card p{
    line-height: 1.6;
+}
+
+.trash-icon{
+    position: absolute !important;
+    top: 10px;
+    right: 10px;
 }

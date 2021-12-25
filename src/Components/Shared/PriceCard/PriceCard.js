@@ -1,6 +1,9 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import './PriceCard.css';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
+import { clearTheCart } from '../../../utilities/fakeDB'
 
 const PriceCard = ({ totalCost }) => {
     //----------Converting the total cost into USD currency----------//
@@ -14,6 +17,9 @@ const PriceCard = ({ totalCost }) => {
     })
     return (
         <Box className="price-card">
+            <IconButton aria-label="delete" className="trash-icon" onClick={clearTheCart} title="Remove all item">
+                <DeleteIcon />
+            </IconButton>
             <p className="font-light color-primary">Est Cost</p>
             <h1 className="main-heading">
                 {

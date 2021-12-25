@@ -31,7 +31,7 @@ export const languagesData = [
         id: 5,
         title: 'Kajabi',
         desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-        price: 250,
+        price: 590,
         type: 'language'
     },
 ];
