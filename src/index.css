@@ -69,7 +69,8 @@ code {
     margin-bottom: 30px;
   }
   /**********overriding default styles of Material UI Container & Grid*********/
-  .css-1oqqzyl-MuiContainer-root{
+  .css-1oqqzyl-MuiContainer-root,
+  .css-1qsxih2{
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
