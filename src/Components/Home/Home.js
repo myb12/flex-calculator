@@ -19,7 +19,7 @@ const Home = () => {
     const [slideNumber, setSlideNumber] = useState(1);
     const [serviceClicked, setServiceClicked] = useState('');
     const [languageClicked, setLanguageClicked] = useState('');
-    const [specificPackage, setSpecificPackage] = useState({ pages: priceOfPerPage * defaultPageNumber });
+    const [specificPackage, setSpecificPackage] = useState({});
     const [UX, setUX] = useState('');
     const [paymentTitle, setPaymentTitle] = useState('');
 
