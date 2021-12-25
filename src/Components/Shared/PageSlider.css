@@ -1,0 +1,10 @@
+.MuiSlider-track{
+    color: var(--color-primary);
+}
+.MuiSlider-rail{
+    color: var(--color-grey);
+}
+
+.MuiSlider-thumb{
+    color: var(--color-white-light);
+}
