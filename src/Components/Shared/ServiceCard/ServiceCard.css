@@ -1,0 +1,11 @@
+.service-card{
+    border: 3px solid var(--color-border);
+    padding: 15px 30px;
+    margin:8px 0;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.service-card:hover{
+    border: 3px solid var(--color-primary);
+}

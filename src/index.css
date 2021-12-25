@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -17,4 +21,20 @@ code {
   --color-primary: #13A2E2;
   --color-white-light: #FCFFFF;
   --color-grey: #212529;
+  --color-white-grey-opacity:#E8E8E8;
+  --color-border: #3f3f3f21;
+}
+
+/************Some global styles************/
+.color-primary{
+  color: var(--color-primary) !important;
+}
+.font-bold{
+  font-weight: 700;
+}
+.ml-5{
+  margin-left: 5px;
+}
+.mr-5{
+  margin-right: 5px;
 }
