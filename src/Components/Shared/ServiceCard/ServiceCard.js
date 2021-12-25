@@ -9,7 +9,7 @@ const ServiceCard = ({ item, handleClicked, clicked }) => {
             className={clicked === title ? 'service-card border-primary' : 'service-card'}
             onClick={() => handleClicked(title, type)}>
             <h3>{title} </h3>
-            <p> {desc}</p>
+            <p className="font-light"> {desc}</p>
         </Box>
     );
 };

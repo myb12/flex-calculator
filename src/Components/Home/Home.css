@@ -7,10 +7,17 @@
 .main-left{
     border-right: 2px solid var(--color-border);
 }
-.main-heading{
-    font-size: 20px;
-    font-weight: 700;
+.main-right{
+   display: flex !important;
+   flex-direction: column !important;
+   align-items: center;
+   justify-content: space-between;
+}
+.main-right span{
     text-align: center;
+    width: 60%;
+    font-size: 16px;
+    font-weight: 400;
 }
 .services-container{
     display: flex;
@@ -84,4 +91,21 @@
     display: flex;
     justify-content: center;
     margin-top: 22px;
+}
+
+.start-button{
+    height: 40px;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border: 2px solid transparent;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.start-button:hover{
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    border: 2px solid var(--color-primary);
 }

@@ -19,6 +19,7 @@ code {
 /************Some relevent color variable************/
 :root {
   --color-primary: #13A2E2;
+  --color-white: #FFFFFF;
   --color-white-light: #FCFFFF;
   --color-grey: #212529;
   --color-white-grey-opacity:#E8E8E8;
@@ -26,11 +27,19 @@ code {
 }
 
 /************Some global styles************/
+.main-heading{
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
 .color-primary{
   color: var(--color-primary) !important;
 }
 .font-bold{
   font-weight: 700;
+}
+.font-light{
+  font-weight: 300;
 }
 .ml-5{
   margin-left: 5px;
@@ -49,4 +58,21 @@ code {
 }
 .border-primary-thin{
   border: 2px solid var(--color-primary) !important;
+}
+
+
+@media screen and (max-width: 900px) {
+  .css-1oqqzyl-MuiContainer-root{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .services{
+    width: 100% !important;
+  }
+  .price-card{
+    margin-bottom: 30px;
+  }
+  .css-11lq3yg-MuiGrid-root{
+    justify-content: center !important;
+  }
 }

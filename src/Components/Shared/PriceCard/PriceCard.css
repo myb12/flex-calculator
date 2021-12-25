@@ -1,0 +1,14 @@
+.price-card{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    max-width: 370px;
+    height: 200px;
+    padding: 25px;
+    text-align: center;
+}
+.price-card .main-heading{
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+.price-card p{
+   line-height: 1.6;
+}

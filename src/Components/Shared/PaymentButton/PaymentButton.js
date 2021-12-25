@@ -1,6 +1,5 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import './PaymentButton.css';
 
 const PaymentButton = ({ payment, handleClicked }) => {
     const { title, type } = payment;

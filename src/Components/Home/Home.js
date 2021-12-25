@@ -9,27 +9,28 @@ import './Home.css';
 import { languagesData, servicesData, paymentData } from '../../fakeData/fakeData';
 import CustomButton from '../Shared/CustomButton/CustomButton';
 import PaymentButton from '../Shared/PaymentButton/PaymentButton';
+import PriceCard from '../Shared/PriceCard/PriceCard';
 
 const Home = () => {
     const numberOfPage = 3;
     const priceOfUx = 2000;
     const priceOfPerPage = 1000;
+    const defaultPageNumber = 2;
     const [slideNumber, setSlideNumber] = useState(1);
     const [clicked, setClicked] = useState('');
-    const [specificPackage, setSpecificPackage] = useState({});
+    const [specificPackage, setSpecificPackage] = useState({ pages: priceOfPerPage * defaultPageNumber });
 
-    // these are for pages slider 
-    const defaultPageNumber = 2;
+    //----------these are for pages slider----------//
     const [pageNumber, setPageNmber] = useState(defaultPageNumber);
+
     const onChange = (event, value) => {
         setPageNmber(value);
         const shalow = { ...specificPackage };
-        shalow.pages = pageNumber;
+        shalow.pages = priceOfPerPage * value;
         setSpecificPackage(shalow);
-        console.log(specificPackage);
-
     };
 
+    //----------Handler for slide navigation----------//
     const handlePrevious = () => {
         if (slideNumber === 1) return;
         setSlideNumber(slideNumber - 1);
@@ -40,6 +41,7 @@ const Home = () => {
         setSlideNumber(slideNumber + 1);
     }
 
+    //----------Handler for storing price of every item depending on the click----------//
     const handleClicked = (givenTitle, type) => {
         setClicked(givenTitle);
         if (type === 'language') {
@@ -62,14 +64,21 @@ const Home = () => {
         }
 
     }
+    //----------Handler for UX----------//
     const handleUx = (response) => {
-        if (response !== 'Yes') return;
-        const shalow = { ...specificPackage };
-        shalow.ux = priceOfUx;
-        setSpecificPackage(shalow);
-        // console.log(specificPackage);
+        if (response === 'Yes') {
+            const shalow = { ...specificPackage };
+            shalow.ux = priceOfUx;
+            setSpecificPackage(shalow);
+        } else {
+            const shalow = { ...specificPackage };
+            delete shalow.ux;
+            setSpecificPackage(shalow);
+        }
     }
-    console.log(specificPackage);
+
+    //----------calculating the total cost----------//
+    let totalCost = Object.values(specificPackage).reduce((acc, cur) => acc + cur, 0);
     return (
         <section>
             <HeaderComponent />
@@ -164,7 +173,13 @@ const Home = () => {
                         </Box>
                     </Grid>
                     <Grid item md={5} className="main-right">
-                        Bpx 2
+                        {
+                            slideNumber === 3 ? <>
+                                <PriceCard totalCost={totalCost} />
+                                <button className="start-button">START YOUR PROJECT NOW</button>
+                            </> : <span>PLEASE INPUT ALL THE FIELDS TO SHOW ESTIMATED PRICE</span>
+                        }
+
                     </Grid>
                 </Grid>
             </Container>
