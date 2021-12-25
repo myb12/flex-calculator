@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import './PageSlider.css';
 
-const PageSlider = () => {
-    const defaultPageNumber = 2;
-    const [pageNumber, setPageNmber] = useState(defaultPageNumber);
-    const onChange = (event, value) => {
-        setPageNmber(value);
-    };
-    console.log(pageNumber);
+const PageSlider = ({ pageNumber, onChange, defaultPageNumber }) => {
+
     return (
-        <>
+        <Box>
             <span>{pageNumber} Pages</span>
             <Box width={300}>
                 <Slider
@@ -22,7 +17,7 @@ const PageSlider = () => {
                     min={1}
                     max={20} />
             </Box>
-        </>
+        </Box>
     );
 }
 export default PageSlider;

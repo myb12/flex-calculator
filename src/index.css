@@ -38,3 +38,15 @@ code {
 .mr-5{
   margin-right: 5px;
 }
+.mt-50{
+  margin-top: 50px;
+}
+.mb-50{
+  margin-bottom: 50px;
+}
+.border-primary{
+  border: 3px solid var(--color-primary) !important;
+}
+.border-primary-thin{
+  border: 2px solid var(--color-primary) !important;
+}

@@ -1,0 +1,15 @@
+.custom-button{
+    height: 30px;
+    padding: 5px 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    border: 2px solid transparent;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4px;
+}
+.custom-button:hover{
+    border: 2px solid var(--color-primary);
+}
