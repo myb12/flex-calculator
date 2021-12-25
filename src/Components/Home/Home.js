@@ -17,8 +17,11 @@ const Home = () => {
     const priceOfPerPage = 1000;
     const defaultPageNumber = 2;
     const [slideNumber, setSlideNumber] = useState(1);
-    const [clicked, setClicked] = useState('');
+    const [serviceClicked, setServiceClicked] = useState('');
+    const [languageClicked, setLanguageClicked] = useState('');
     const [specificPackage, setSpecificPackage] = useState({ pages: priceOfPerPage * defaultPageNumber });
+    const [UX, setUX] = useState('');
+    const [paymentTitle, setPaymentTitle] = useState('');
 
     //----------these are for pages slider----------//
     const [pageNumber, setPageNmber] = useState(defaultPageNumber);
@@ -43,29 +46,33 @@ const Home = () => {
 
     //----------Handler for storing price of every item depending on the click----------//
     const handleClicked = (givenTitle, type) => {
-        setClicked(givenTitle);
+
         if (type === 'language') {
             const { price } = languagesData.find(each => each.title === givenTitle);
             const shalow = { ...specificPackage };
             shalow.language = price;
             setSpecificPackage(shalow);
+            setLanguageClicked(givenTitle);
         }
         if (type === 'service') {
             const { price } = servicesData.find(each => each.title === givenTitle);
             const shalow = { ...specificPackage };
             shalow.service = price;
             setSpecificPackage(shalow);
+            setServiceClicked(givenTitle)
         }
         if (type === 'payment') {
             const { price } = paymentData.find(each => each.title === givenTitle);
             const shalow = { ...specificPackage };
             shalow.payment = price;
             setSpecificPackage(shalow);
+            setPaymentTitle(givenTitle);
         }
 
     }
     //----------Handler for UX----------//
     const handleUx = (response) => {
+        setUX(response);
         if (response === 'Yes') {
             const shalow = { ...specificPackage };
             shalow.ux = priceOfUx;
@@ -104,7 +111,7 @@ const Home = () => {
                                         key={language.id}
                                         item={language}
                                         handleClicked={handleClicked}
-                                        clicked={clicked}
+                                        clicked={languageClicked}
                                     />)
                                 }
 
@@ -114,7 +121,8 @@ const Home = () => {
                                         key={service.id}
                                         item={service}
                                         handleClicked={handleClicked}
-                                        clicked={clicked}
+                                        clicked={serviceClicked}
+
                                     />)
                                 }
 
@@ -125,8 +133,8 @@ const Home = () => {
                                             DO YOU HAVE UX DESIGN READY?
                                         </h1>
                                         <Box className="button-container">
-                                            <CustomButton handleUx={handleUx} >Yes</CustomButton>
-                                            <CustomButton handleUx={handleUx}>No</CustomButton>
+                                            <CustomButton handleUx={handleUx} ux={UX}>Yes</CustomButton>
+                                            <CustomButton handleUx={handleUx} ux={UX}>No</CustomButton>
                                         </Box>
 
                                         <h1 className="main-heading mt-50">
@@ -149,6 +157,7 @@ const Home = () => {
                                                 paymentData.map(payment => <PaymentButton
                                                     key={payment.id}
                                                     payment={payment}
+                                                    paymentTitle={paymentTitle}
                                                     handleClicked={handleClicked} />)
                                             }
                                         </Box>
