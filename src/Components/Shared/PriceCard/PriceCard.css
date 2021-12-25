@@ -5,10 +5,12 @@
     padding: 25px;
     text-align: center;
 }
+
 .price-card .main-heading{
     margin-top: 15px;
     margin-bottom: 6px;
 }
+
 .price-card p{
    line-height: 1.6;
 }

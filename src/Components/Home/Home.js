@@ -87,111 +87,104 @@ const Home = () => {
     //----------calculating the total cost----------//
     let totalCost = Object.values(specificPackage).reduce((acc, cur) => acc + cur, 0);
     return (
-        <section>
-            <HeaderComponent />
-            <Container maxWidth='lg' className="main-section mb-50">
-                <Grid container>
-                    <Grid item md={7} className="main-left">
-                        {
-                            slideNumber === 1 && <h1 className="main-heading">
-                                I WANT MY SITE TO BE BUILT ON (CHOOSE FRAMEWORK)
-                            </h1>
-                        }
-                        {
-                            slideNumber === 2 && <h1 className="main-heading">
-                                I WANT TO BUILD
-                            </h1>
-                        }
-
-                        <Box className="services-container">
-                            <Box className="services">
-                                {/* Content of first Slider  */}
-                                {
-                                    slideNumber === 1 && languagesData.map(language => <ServiceCard
-                                        key={language.id}
-                                        item={language}
-                                        handleClicked={handleClicked}
-                                        clicked={languageClicked}
-                                    />)
-                                }
-
-                                {/* Content of second Slider  */}
-                                {
-                                    slideNumber === 2 && servicesData.map(service => <ServiceCard
-                                        key={service.id}
-                                        item={service}
-                                        handleClicked={handleClicked}
-                                        clicked={serviceClicked}
-
-                                    />)
-                                }
-
-                                {/* Content of third Slider  */}
-                                {
-                                    slideNumber === 3 && <>
-                                        <h1 className="main-heading">
-                                            DO YOU HAVE UX DESIGN READY?
-                                        </h1>
-                                        <Box className="button-container">
-                                            <CustomButton handleUx={handleUx} ux={UX}>Yes</CustomButton>
-                                            <CustomButton handleUx={handleUx} ux={UX}>No</CustomButton>
+        <section className="home-section">
+            <h1 className="top-heading">CALCULATE YOUR PRICE</h1>
+            <Box className="home">
+                <HeaderComponent />
+                <Container maxWidth='lg' className="main-section mb-50">
+                    <Grid container>
+                        <Grid item md={7} className="main-left">
+                            {
+                                slideNumber === 1 && <h1 className="main-heading">
+                                    I WANT MY SITE TO BE BUILT ON (CHOOSE FRAMEWORK)
+                                </h1>
+                            }
+                            {
+                                slideNumber === 2 && <h1 className="main-heading">
+                                    I WANT TO BUILD
+                                </h1>
+                            }
+                            <Box className="services-container">
+                                <Box className="services">
+                                    {/* Content of first Slider  */}
+                                    {
+                                        slideNumber === 1 && languagesData.map(language => <ServiceCard
+                                            key={language.id}
+                                            item={language}
+                                            handleClicked={handleClicked}
+                                            clicked={languageClicked}
+                                        />)
+                                    }
+                                    {/* Content of second Slider  */}
+                                    {
+                                        slideNumber === 2 && servicesData.map(service => <ServiceCard
+                                            key={service.id}
+                                            item={service}
+                                            handleClicked={handleClicked}
+                                            clicked={serviceClicked}
+                                        />)
+                                    }
+                                    {/* Content of third Slider  */}
+                                    {
+                                        slideNumber === 3 && <>
+                                            <h1 className="main-heading">
+                                                DO YOU HAVE UX DESIGN READY?
+                                            </h1>
+                                            <Box className="button-container">
+                                                <CustomButton handleUx={handleUx} ux={UX}>Yes</CustomButton>
+                                                <CustomButton handleUx={handleUx} ux={UX}>No</CustomButton>
+                                            </Box>
+                                            <h1 className="main-heading mt-50">
+                                                HOW MANY WEBPAGES DO YOU WANT FOR YOUR PUBLIC WEBSITE?
+                                            </h1>
+                                            <Box className="page-slider-container">
+                                                <PageSlider
+                                                    onChange={onChange}
+                                                    pageNumber={pageNumber}
+                                                    defaultPageNumber={defaultPageNumber}
+                                                />
+                                            </Box>
+                                            <h1 className="main-heading mt-50">
+                                                ANY PAYMENT GATEWAY INTEGRATION?
+                                            </h1>
+                                            <Box className="button-container">
+                                                {
+                                                    paymentData.map(payment => <PaymentButton
+                                                        key={payment.id}
+                                                        payment={payment}
+                                                        paymentTitle={paymentTitle}
+                                                        handleClicked={handleClicked} />)
+                                                }
+                                            </Box>
+                                        </>
+                                    }
+                                    {/* Service footer section starts */}
+                                    <Box className="sevices-footer">
+                                        <span onClick={handlePrevious} className={slideNumber > 1 ? 'color-primary' : ''}>
+                                            Previous
+                                        </span>
+                                        <Box className="progress">
+                                            <Box className="bar" style={{ width: slideNumber === 1 ? '33%' : slideNumber === 2 ? '66%' : '100%' }}></Box>
                                         </Box>
-
-                                        <h1 className="main-heading mt-50">
-                                            HOW MANY WEBPAGES DO YOU WANT FOR YOUR PUBLIC WEBSITE?
-                                        </h1>
-                                        <Box className="page-slider-container">
-                                            <PageSlider
-                                                onChange={onChange}
-                                                pageNumber={pageNumber}
-                                                defaultPageNumber={defaultPageNumber}
-                                            />
-                                        </Box>
-
-                                        <h1 className="main-heading mt-50">
-                                            ANY PAYMENT GATEWAY INTEGRATION?
-                                        </h1>
-
-                                        <Box className="button-container">
-                                            {
-                                                paymentData.map(payment => <PaymentButton
-                                                    key={payment.id}
-                                                    payment={payment}
-                                                    paymentTitle={paymentTitle}
-                                                    handleClicked={handleClicked} />)
-                                            }
-                                        </Box>
-                                    </>
-                                }
-
-                                {/* Service footer section starts */}
-                                <Box className="sevices-footer">
-                                    <span onClick={handlePrevious} className={slideNumber > 1 ? 'color-primary' : ''}>
-                                        Previous
-                                    </span>
-                                    <Box className="progress">
-                                        <Box className="bar" style={{ width: slideNumber === 1 ? '33%' : slideNumber === 2 ? '66%' : '100%' }}></Box>
+                                        <span onClick={handleNext} className={slideNumber < numberOfPage ? 'color-primary' : ''}>
+                                            Next
+                                        </span>
                                     </Box>
-                                    <span onClick={handleNext} className={slideNumber < numberOfPage ? 'color-primary' : ''}>
-                                        Next
-                                    </span>
+                                    {/* Service footer section ends */}
                                 </Box>
-                                {/* Service footer section ends */}
-
                             </Box>
-                        </Box>
+                        </Grid>
+                        <Grid item md={5} className="main-right">
+                            {
+                                slideNumber === 3 ? <>
+                                    <PriceCard totalCost={totalCost} />
+                                    <button className="start-button">START YOUR PROJECT NOW</button>
+                                </> : <span>PLEASE INPUT ALL THE FIELDS TO SHOW ESTIMATED PRICE</span>
+                            }
+                        </Grid>
                     </Grid>
-                    <Grid item md={5} className="main-right">
-                        {
-                            slideNumber === 3 ? <>
-                                <PriceCard totalCost={totalCost} />
-                                <button className="start-button">START YOUR PROJECT NOW</button>
-                            </> : <span>PLEASE INPUT ALL THE FIELDS TO SHOW ESTIMATED PRICE</span>
-                        }
-
-                    </Grid>
-                </Grid>
-            </Container>
+                </Container>
+            </Box>
         </section>
     );
 };

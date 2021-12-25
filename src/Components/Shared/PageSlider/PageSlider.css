@@ -1,6 +1,8 @@
+/**********overriding default styles of Material UI slider**********/
 .MuiSlider-track{
     color: var(--color-primary);
 }
+
 .MuiSlider-rail{
     color: var(--color-grey);
 }

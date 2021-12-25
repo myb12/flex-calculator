@@ -3,6 +3,7 @@ import React from 'react';
 import './PriceCard.css';
 
 const PriceCard = ({ totalCost }) => {
+    //----------Converting the total cost into USD currency----------//
     const totalInUSD = (totalCost).toLocaleString('en-US', {
         style: 'currency',
         currency: 'USD',

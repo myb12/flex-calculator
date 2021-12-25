@@ -62,15 +62,16 @@ code {
 
 
 @media screen and (max-width: 900px) {
-  .css-1oqqzyl-MuiContainer-root{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
   .services{
     width: 100% !important;
   }
   .price-card{
     margin-bottom: 30px;
+  }
+  /**********overriding default styles of Material UI Container & Grid*********/
+  .css-1oqqzyl-MuiContainer-root{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   .css-11lq3yg-MuiGrid-root{
     justify-content: center !important;

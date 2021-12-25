@@ -10,6 +10,7 @@
     align-items: center;
     margin: 0 4px;
 }
+
 .custom-button:hover{
     border: 2px solid var(--color-primary);
 }
